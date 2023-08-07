@@ -164,4 +164,51 @@ class PrintingView(View):
         return render(request, 'printing_list.html', {'printing_list': printing_list})
 
 
+class MoveProjectUpView(View):
+    def post(self, request, item_id):
+        item = get_object_or_404(PrintingQue, id=item_id)
 
+        if item.order > 1:
+            prev_items = PrintingQue.objects.filter(order=item.order - 1)
+
+            if prev_items.exists():
+                prev_item = prev_items.first()
+
+                current_order = item.order
+                item.order = prev_item.order
+                prev_item.order = current_order
+
+                item.save()
+                prev_item.save()
+
+        return redirect('printing_list')
+
+
+class MoveProjectDownView(View):
+    def post(self, request, item_id):
+        item = get_object_or_404(PrintingQue, id=item_id)
+
+        if item.order < PrintingQue.objects.count():
+            next_items = PrintingQue.objects.filter(order=item.order + 1)
+
+            if next_items.exists():
+                next_item = next_items.first()
+
+                current_order = item.order
+                item.order = next_item.order
+                next_item.order = current_order
+
+                item.save()
+                next_item.save()
+
+        return redirect('printing_list')
+
+
+class DeleteProjectView(View):
+    def post(self, request, project_id):
+        printing_que_items = PrintingQue.objects.filter(project__id=project_id)
+
+        for printing_que_item in printing_que_items:
+            printing_que_item.delete()
+
+        return redirect('printing_list')

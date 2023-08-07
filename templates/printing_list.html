@@ -55,7 +55,27 @@
                                 <td>{{ item.project.printer }}</td>
                                 <td>{{ item.project.material }}</td>
                                 <td>{{ item.project.filament_needed }}</td>
-                                <td>   </td>
+                                <td>
+                                    <div>
+                                        <form method="post" action="{% url 'move_up' item.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="button-details">Wyżej</button>
+                                        </form>
+                                    </div>
+
+                                    <div>
+                                        <form method="post" action="{% url 'delete_project' item.project.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit">Usuń</button>
+                                        </form>
+                                    </div>
+                                    <div>
+                                        <form method="post" action="{% url 'move_down' item.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="button-details">Niżej</button>
+                                        </form>
+                                    </div>
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>

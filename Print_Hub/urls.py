@@ -25,6 +25,9 @@ urlpatterns = [
     path('delete_part/<int:part_id>/', views.DeletePart.as_view(), name='delete_part'),
     path('printer_detail/<int:printer_id>/', views.PrinterDetail.as_view(), name='printer_detail'),
     path('printing/', views.PrintingView.as_view(), name= 'printing_list'),
+    path('move_up/<int:item_id>/', views.MoveProjectUpView.as_view(), name='move_up'),
+    path('move_down/<int:item_id>/', views.MoveProjectDownView.as_view(), name='move_down'),
+    path('delete_project/<int:project_id>/', views.DeleteProjectView.as_view(), name='delete_project'),
 
 ]
 
