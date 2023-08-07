@@ -8,82 +8,82 @@
     <title>Moja Strona</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
-<body>
 
-<div class="navbar">
-    <form class="login-form">
-        <label for="login">Login:</label>
-        <input type="text" id="login" name="login" placeholder="Twój login">
-        <label for="password">Hasło:</label>
-        <input type="password" id="password" name="password" placeholder="Twoje hasło">
-        <button type="submit">Zaloguj</button>
-        <button type="submit" class="register-button">Zarejestruj</button>
-    </form>
-</div>
+<div class="wrapper">
 
-<div class="content">
-    <div class="branding">
-        <h1>--- 3d PRINT HUB ---</h1>
+    <div class="navbar">
+        <img src="" alt="logo">
+        <form class="login-form">
+            <label for="login">Login:</label>
+            <input type="text" id="login" name="login" placeholder="Twój login">
+            <label for="password">Hasło:</label>
+            <input type="password" id="password" name="password" placeholder="Twoje hasło">
+            <button type="submit">Zaloguj</button>
+            <button type="submit" class="register-button">Zarejestruj</button>
+        </form>
     </div>
 
-    <div class="center-container">
-        <div class="left-container">
-            <a href="{% url 'printing_list' %}" class="menu-link">Kolejka drukowania</a>
-            <a href="{% url 'printer_list' %}" class="menu-link">Moje drukarki</a>
-            <a href="{% url 'project' %}" class="menu-link">Moje projekty</a>
-            <a href="{% url 'filament' %}" class="menu-link">Filamenty</a>
-            <a href="{% url 'add_filament' %}" class="menu-link"><b>↳  dodaj filament</b></a>
-            <a href="{% url 'filament' %}" class="menu-link">↳  edytuj filament</a>
-            <a href="{% url 'parts' %}" class="menu-link">Części</a>
+    <div class="content">
+
+        <div class="center-container">
+            <div class="left-container">
+                <a href="{% url 'printing_list' %}" class="menu-link">Kolejka drukowania</a>
+                <a href="{% url 'printer_list' %}" class="menu-link">Moje drukarki</a>
+                <a href="{% url 'project' %}" class="menu-link">Moje projekty</a>
+                <a href="{% url 'filament' %}" class="menu-link">Filamenty</a>
+                <a href="{% url 'add_filament' %}" class="menu-link"><b>↳  dodaj filament</b></a>
+                <a href="{% url 'filament' %}" class="menu-link">↳  edytuj filament</a>
+                <a href="{% url 'parts' %}" class="menu-link">Części</a>
+            </div>
+
+            <div class="right-container">
+                <form method="post" class="form-container">
+                    {% csrf_token %}
+                    <div class="form-field">
+                        <label for="{{ form.name.id_for_label }}">Name:</label>
+                        {{ form.name }}
+                    </div>
+
+                    <div class="form-field">
+                        <label for="{{ form.producer.id_for_label }}">Producer:</label>
+                        {{ form.producer }}
+                    </div>
+
+                    <div class="form-field">
+                        <label for="{{ form.material.id_for_label }}">Material:</label>
+                        {{ form.material }}
+                    </div>
+
+                    <div class="form-field">
+                        <label for="{{ form.colour.id_for_label }}">Colour:</label>
+                        {{ form.colour }}
+                    </div>
+
+                    <div class="form-field">
+                        <label for="{{ form.temperature_min.id_for_label }}">Temperature Min:</label>
+                        {{ form.temperature_min }}
+                    </div>
+
+                    <div class="form-field">
+                        <label for="{{ form.temperature_max.id_for_label }}">Temperature Max:</label>
+                        {{ form.temperature_max }}
+                    </div>
+
+                    <div class="form-field">
+                        <label for="{{ form.weight.id_for_label }}">Weight:</label>
+                        {{ form.weight }}
+                    </div>
+
+                    <button type="submit" class="submit-addFilament-button">Dodaj filament</button>
+                </form>
+            </div>
         </div>
-
-        <div class="right-container">
-            <form method="post" class="form-container">
-                {% csrf_token %}
-                <div class="form-field">
-                    <label for="{{ form.name.id_for_label }}">Name:</label>
-                    {{ form.name }}
-                </div>
-
-                <div class="form-field">
-                    <label for="{{ form.producer.id_for_label }}">Producer:</label>
-                    {{ form.producer }}
-                </div>
-
-                <div class="form-field">
-                    <label for="{{ form.material.id_for_label }}">Material:</label>
-                    {{ form.material }}
-                </div>
-
-                <div class="form-field">
-                    <label for="{{ form.colour.id_for_label }}">Colour:</label>
-                    {{ form.colour }}
-                </div>
-
-                <div class="form-field">
-                    <label for="{{ form.temperature_min.id_for_label }}">Temperature Min:</label>
-                    {{ form.temperature_min }}
-                </div>
-
-                <div class="form-field">
-                    <label for="{{ form.temperature_max.id_for_label }}">Temperature Max:</label>
-                    {{ form.temperature_max }}
-                </div>
-
-                <div class="form-field">
-                    <label for="{{ form.weight.id_for_label }}">Weight:</label>
-                    {{ form.weight }}
-                </div>
-
-                <button type="submit" class="submit-addFilament-button">Dodaj filament</button>
-            </form>
-        </div>
     </div>
 
-    <div class="bottom-bar">
-        --- 3d PRINT HUB ---
-        <p></p>
-    </div>
+    <footer class="bottom-bar">
+        test
+    </footer>
+
 </div>
 
 </body>
