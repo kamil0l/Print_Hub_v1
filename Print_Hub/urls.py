@@ -11,7 +11,7 @@ urlpatterns = [
     path('', views.IndexView.as_view(), name= 'index'),
     path('printer/', views.PrinterList.as_view(), name= 'printer_list'),
     path('addPrinter/', views.AddPrinter.as_view(), name= 'add_printer'),
-    path('project/', views.ProjectList.as_view(), name= 'project'),
+    path('project/', views.ProjectListView.as_view(), name= 'project'),
     path('addProject/', views.AddProject.as_view(), name= 'add_project'),
     path('delete-project/<int:project_id>/', views.DeleteProject.as_view(), name='delete_project'),
     path('filament/', views.FilamentList.as_view(), name= 'filament'),
@@ -24,7 +24,7 @@ urlpatterns = [
     path('edit_printer/<int:printer_id>/', views.EditPrinter.as_view(), name='edit_printer'),
     path('delete_part/<int:part_id>/', views.DeletePart.as_view(), name='delete_part'),
     path('printer_detail/<int:printer_id>/', views.PrinterDetail.as_view(), name='printer_detail'),
-    path('printing/', views.PrintingList.as_view(), name= 'printing_list'),
+    path('printing/', views.PrintingView.as_view(), name= 'printing_list'),
 ]
 
 if settings.DEBUG:

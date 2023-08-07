@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.urls import reverse
 from .forms import FilamentForm, PrinterForm, PartsForm, AddProjectForm
-from .models import Filament, Printer, Parts, Project
+from .models import Filament, Printer, Parts, Project, PrintingQue
 
 class IndexView(View):
 
@@ -57,10 +57,20 @@ class EditPrinter(View):
         return render(request, 'edit_printer.html', {'form': form, 'printer': printer})
 
 
-class ProjectList(View):
+class ProjectListView(View):
     def get(self, request):
         projects = Project.objects.all()
         return render(request, 'project_list.html', {'projects': projects})
+
+    def post(self, request):
+        project_id = request.POST.get('project_id')  # Pobierz ID projektu z formularza
+        project = Project.objects.get(id=project_id)  # Pobierz projekt na podstawie ID
+        order = PrintingQue.objects.count() + 1  # Pobierz następny numer w kolejce
+        printing_que = PrintingQue(project=project, order=order)
+        printing_que.save()  # Dodaj projekt do kolejki
+        return redirect('project')  # Przekieruj na listę projektów
+
+
 
 class AddProject(View):
     def get(self, request):
@@ -148,7 +158,16 @@ class EditFilament(View):
         return render(request, 'edit_filament.html', {'form': form, 'filament': filament})
 
 
-class PrintingList(View):
+class PrintingView(View):
     def get(self, request):
+        printing_list = PrintingQue.objects.all()
+        return render(request, 'printing_list.html', {'printing_list': printing_list})
 
-        return render(request, 'printing_list.html')
+
+class AddProject(View):
+    def form_valid(self, form):
+        project = form.save()  # Zapisz projekt
+        order = PrintingQue.objects.count() + 1  # Pobierz następny numer w kolejce
+        printing_que = PrintingQue(project=project, order=order)
+        printing_que.save()  # Dodaj projekt do kolejki
+        return redirect('project')  # Przekieruj na listę projektów

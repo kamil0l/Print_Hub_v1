@@ -36,4 +36,3 @@ class AddProjectForm(forms.ModelForm):
             'print_time': 'Czas wydruku (min)',
             'image': 'Zdjęcie',
         }
-

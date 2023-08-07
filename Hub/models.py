@@ -1,6 +1,7 @@
 from django.db import models
 
 
+
 # Create your models here.
 
 class Printer(models.Model):
@@ -45,5 +46,14 @@ class Parts(models.Model):
     def __str__(self):
         return self.name
 
+
+class PrintingQue(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    order = models.IntegerField()
+
+    def __str__(self):
+        return self.project.name
+    class Meta:
+        ordering = ["order"]
 
 
