@@ -58,8 +58,7 @@
                         </td>
                         <td>
                             <div>
-                                <button type="submit">
-                                    <a href="{% url 'edit_printer' printer.id %}" class="edit-button">Edytuj</a>
+                                    <a href="{% url 'edit_printer' printer.id %}" class="button-edit">-- Edytuj --</a>
                             </div>
                             <br>
                             <div>
@@ -70,8 +69,7 @@
                             </div>
                             <br>
                             <div>
-                                <button type="submit">
-                                    <a href="{% url 'printer_detail' printer.id %}" >Szczegóły</a>
+                                    <a href="{% url 'printer_detail' printer.id %}" class="button-details">Szczegóły</a>
                             </div>
                         </td>
                     </tr>
