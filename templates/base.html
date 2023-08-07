@@ -25,26 +25,28 @@
 
 <div class="content">
 
-    <div class="center-container">
-        <div class="image-description-container">
-            <div class="image-box">
-                <img src="{% static 'images/printer.jpg' %}" alt="Obrazek" width="400" height="400">
+    <div class="container-b">
+        <div class="left-container-b">
+            <div>
+                <img src="{% static 'images/printer.jpg' %}" alt="Obrazek" width="425" height="425">
             </div>
-            <div class="description-box">
-                <p>Aplikacja 3D Print Hub to kompleksowe narzędzie zaprojektowane specjalnie
-                    dla entuzjastów i profesjonalistów w dziedzinie druku 3D.
-                    Stanowi idealne rozwiązanie do efektywnego zarządzania drukarkami 3D,
-                    projektami, filamentami oraz akcesoriami związanych z tym dynamicznie
-                    rozwijającym się obszarem technologii.</p>
-                <p>Dzięki 3D Print Hub użytkownicy zyskują nie tylko kontrolę nad swoimi
-                    drukarkami 3D, ale także poprawiają swoją efektywność poprzez
-                    skoncentrowanie zarządzania projektami, materiałami oraz kolejkami
-                    wydruków w jednym miejscu. To wszechstronne narzędzie, które ułatwia
-                    pracę z technologią druku 3D i dostarcza niezbędne funkcje do efektywnego
-                    wykorzystania tej fascynującej technologii.</p>
-                <a href="{% url 'printer_list' %}" class="learn-more-link">Dowiedz się więcej</a>
+        </div>
 
-            </div>
+        <div class="right-container-b">
+            <p>Aplikacja 3D Print Hub to kompleksowe narzędzie zaprojektowane specjalnie
+                dla entuzjastów i profesjonalistów w dziedzinie druku 3D.
+                Stanowi idealne rozwiązanie do efektywnego zarządzania drukarkami 3D,
+                projektami, filamentami oraz akcesoriami związanych z tym dynamicznie
+                rozwijającym się obszarem technologii.</p>
+            <p>Dzięki 3D Print Hub użytkownicy zyskują nie tylko kontrolę nad swoimi
+                drukarkami 3D, ale także poprawiają swoją efektywność poprzez
+                skoncentrowanie zarządzania projektami, materiałami oraz kolejkami
+                wydruków w jednym miejscu. To wszechstronne narzędzie, które ułatwia
+                pracę z technologią druku 3D i dostarcza niezbędne funkcje do efektywnego
+                wykorzystania tej fascynującej technologii.</p>
+            <button type="button" onclick="window.location.href='{% url 'printer_list' %}';" class="submit-addFilament-button">Dowiedz się więcej</button>
+
+        </div>
         </div>
     </div>
 </div>
