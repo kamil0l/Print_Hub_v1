@@ -164,11 +164,4 @@ class PrintingView(View):
         return render(request, 'printing_list.html', {'printing_list': printing_list})
 
 
-class AddProject(View):
-    def form_valid(self, form):
-        project = form.save()
-        order = PrintingQue.objects.count() + 1
-        printing_que = PrintingQue(project=project, order=order)
-        printing_que.save()
-        return redirect('project')
 
