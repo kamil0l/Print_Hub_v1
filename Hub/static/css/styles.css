@@ -1,22 +1,47 @@
 /* static/css/styles.css */
-
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
 
+.wrapper{
+    background-image: url("../images/bg-dark.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content{
+    padding: 50px 0;
+}
+
 .navbar {
-    background-color: #333;
+    position: relative;
     color: white;
+    display: flex;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
     padding: 10px;
-    text-align: center;
+    margin: 20px 0;
+}
+
+.img-logo{
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 .login-form {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
 }
 
 .navbar-container {
@@ -25,21 +50,46 @@ body {
     padding: 10px;
 }
 
+button{
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
 .login-form label,
 .login-form input {
     margin-right: 10px;
     border: none;
-    padding: 5px;
+    padding: 8px 10px;
     color: white;
     background-color: #333;
+    border-radius: 7px;
+    font-size: 14px;
+    outline: none;
+}
+
+.login-form input{
+    border-radius: 0 8px 8px 0;
+    padding-left: 0;
+}
+
+.login-form label{
+    margin-right: 0;
+    border-radius: 8px 0 0 8px;
 }
 
 .login-form button {
     background-color: #4CAF50;
     color: white;
     border: none;
-    padding: 5px 15px;
+    padding: 8px 15px;
+    font-size: 15px;
     cursor: pointer;
+    border-radius: 8px;
 }
 
 .login-form button:hover {
@@ -68,22 +118,13 @@ body {
     text-decoration: underline;
 }
 
-.content {
-    padding: 20px;
-    position: relative; /* Dodane pozycjonowanie relatywne */
-    min-height: 90vh; /* Ustalenie minimalnej wysokości na całą widzialną wysokość strony */
-}
-
 .bottom-bar {
-    position: absolute; /* Pozycjonowanie absolutne */
-    bottom: 0; /* Ustalenie na dole strony */
-    left: 0; /* Ustalenie na lewej krawędzi */
-    width: 100%; /* Pełna szerokość */
-
     background-color: #333;
     color: white;
-    padding: 30px;
     text-align: center;
+    width: 100%;
+    font-size: 11px;
+    padding: 20px 0 10px 0;
 }
 
 .branding {
@@ -94,14 +135,13 @@ body {
 
 .branding h1 {
     margin: 0;
-    background-color: white;
     font-family: "Consolas", sans-serif;
 }
 
 .center-container {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
 }
 
 .image-description-container {
@@ -151,27 +191,23 @@ body {
 
 .left-container,
 .right-container {
-    border: 3px solid black;
-    border-radius: 25px;
     padding: 20px;
-
-
+    background: rgba(255, 255, 255, 0.34);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
 }
 
 .left-container {
-    background-color: #f2f2f2;
-    border: 3px solid black;
-    border-radius: 25px;
-    padding: 20px;
     box-sizing: border-box;
-    margin: 10px;
+    margin: 0 10px 30px 0;
     width: auto; /* Dopasowanie szerokości do zawartości */
     flex-shrink: 0; /* Zapobiega zmniejszaniu kontenera przy małej zawartości */
 }
 
-
-.right-container {
-    background-color: #fff;
+.right-container{
+    color: white;
 }
 
 .menu-link {
@@ -195,7 +231,7 @@ body {
     background-color: #4CAF50;
     color: white;
     border: none;
-    padding: 5px 15px;
+    padding: 10px 15px;
     cursor: pointer;
 }
 
@@ -214,6 +250,7 @@ body {
     width: 100%;
     border-collapse: collapse;
     border: 1px solid #ddd;
+    color: #fff;
 }
 
 .filament-table th, .filament-table td {
@@ -223,7 +260,7 @@ body {
 }
 
 .filament-table th {
-    background-color: #f2f2f2;
+    background-color: #ffffff3d;
 }
 
 .printer-table {
@@ -241,6 +278,45 @@ body {
     width: 150px;
     height: 150px;
     object-fit: cover;
+}
+
+button {
+    background-color: #af4c4c;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 100%;
+}
+
+a{
+  text-decoration: none;
+}
+
+/* Style od Janka */
+
+.button-remove{
+    background-color: #af4c4c;
+}
+.button-edit{
+    background-color: #296082;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+.button-details{
+    background-color: #dbb829;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 8px;
 }
 
 
