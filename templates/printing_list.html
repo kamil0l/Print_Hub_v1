@@ -36,12 +36,30 @@
         </div>
 
         <div class="right-container">
-                <h1>Kolejka drukowania</h1>
-                <ul>
-                    {% for item in printing_list %}
-                        <li>{{ item.project.name }}</li>
-                    {% endfor %}
-                </ul>
+                <table class="queue-table">
+                    <thead>
+                        <tr>
+                            <th>Podgląd</th>
+                            <th>Nazwa</th>
+                            <th>Drukarka</th>
+                            <th>Materiał</th>
+                            <th>Ile potrzeba</th>
+                            <th>Akcje:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in printing_list %}
+                            <tr>
+                                <td><img src="{{ item.project.image.url }}" alt="Podgląd" width="100" height="100"></td>
+                                <td>{{ item.project.name }}</td>
+                                <td>{{ item.project.printer }}</td>
+                                <td>{{ item.project.material }}</td>
+                                <td>{{ item.project.filament_needed }}</td>
+                                <td>   </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
 
 
         </div>

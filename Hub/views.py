@@ -63,12 +63,12 @@ class ProjectListView(View):
         return render(request, 'project_list.html', {'projects': projects})
 
     def post(self, request):
-        project_id = request.POST.get('project_id')  # Pobierz ID projektu z formularza
-        project = Project.objects.get(id=project_id)  # Pobierz projekt na podstawie ID
-        order = PrintingQue.objects.count() + 1  # Pobierz następny numer w kolejce
+        project_id = request.POST.get('project_id')
+        project = Project.objects.get(id=project_id)
+        order = PrintingQue.objects.count() + 1
         printing_que = PrintingQue(project=project, order=order)
-        printing_que.save()  # Dodaj projekt do kolejki
-        return redirect('project')  # Przekieruj na listę projektów
+        printing_que.save()
+        return redirect('project')
 
 
 

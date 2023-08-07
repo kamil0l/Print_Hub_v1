@@ -337,4 +337,17 @@ a{
     border-radius: 8px;
 }
 
+.queue-table{
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    color: #fff;
+}
+.queue-table th, .queue-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
 
+.queue-table th {
+    background-color: #ffffff3d;
