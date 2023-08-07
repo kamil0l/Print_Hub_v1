@@ -166,8 +166,9 @@ class PrintingView(View):
 
 class AddProject(View):
     def form_valid(self, form):
-        project = form.save()  # Zapisz projekt
-        order = PrintingQue.objects.count() + 1  # Pobierz następny numer w kolejce
+        project = form.save()
+        order = PrintingQue.objects.count() + 1
         printing_que = PrintingQue(project=project, order=order)
-        printing_que.save()  # Dodaj projekt do kolejki
-        return redirect('project')  # Przekieruj na listę projektów
+        printing_que.save()
+        return redirect('project')
+

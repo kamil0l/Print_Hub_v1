@@ -36,7 +36,12 @@
         </div>
 
         <div class="right-container">
-            <h1>Kolejka wydruków</h1>
+                <h1>Kolejka drukowania</h1>
+                <ul>
+                    {% for item in printing_list %}
+                        <li>{{ item.project.name }}</li>
+                    {% endfor %}
+                </ul>
 
 
         </div>

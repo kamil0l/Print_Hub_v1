@@ -25,6 +25,7 @@ urlpatterns = [
     path('delete_part/<int:part_id>/', views.DeletePart.as_view(), name='delete_part'),
     path('printer_detail/<int:printer_id>/', views.PrinterDetail.as_view(), name='printer_detail'),
     path('printing/', views.PrintingView.as_view(), name= 'printing_list'),
+
 ]
 
 if settings.DEBUG:
