@@ -9,11 +9,6 @@ class IndexView(View):
     def get(self, request):
         return render(request, 'base.html')
 
-class PrintingList(View):
-
-    def get(self, request):
-        """printings = Printing.objects.all()"""
-        return render(request, 'printing_list.html' )
 
 class PrinterList(View):
 
@@ -153,3 +148,7 @@ class EditFilament(View):
         return render(request, 'edit_filament.html', {'form': form, 'filament': filament})
 
 
+class PrintingList(View):
+    def get(self, request):
+
+        return render(request, 'printing_list.html')

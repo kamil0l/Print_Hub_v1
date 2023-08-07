@@ -9,7 +9,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.IndexView.as_view(), name= 'index'),
-    path('printing/', views.PrintingList.as_view(), name= 'printing_list'),
     path('printer/', views.PrinterList.as_view(), name= 'printer_list'),
     path('addPrinter/', views.AddPrinter.as_view(), name= 'add_printer'),
     path('project/', views.ProjectList.as_view(), name= 'project'),
@@ -25,6 +24,7 @@ urlpatterns = [
     path('edit_printer/<int:printer_id>/', views.EditPrinter.as_view(), name='edit_printer'),
     path('delete_part/<int:part_id>/', views.DeletePart.as_view(), name='delete_part'),
     path('printer_detail/<int:printer_id>/', views.PrinterDetail.as_view(), name='printer_detail'),
+    path('printing/', views.PrintingList.as_view(), name= 'printing_list'),
 ]
 
 if settings.DEBUG:

@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 
 class Printer(models.Model):
@@ -43,3 +44,6 @@ class Parts(models.Model):
 
     def __str__(self):
         return self.name
+
+
+
