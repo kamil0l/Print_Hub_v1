@@ -255,6 +255,7 @@ button{
     border: none;
     padding: 10px 15px;
     cursor: pointer;
+    border-radius: 8px;
 }
 
 .submit-addFilament-button:hover {
@@ -356,3 +357,31 @@ a{
 
 .queue-table th {
     background-color: #ffffff3d;
+}
+
+.user-info {
+    background-color: #333; /* Kolor tła */
+    color: white; /* Kolor tekstu */
+    padding: 15px 100px; /* Wewnętrzny odstęp */
+    display: flex; /* Ustawienie elementów w linii */
+    align-items: center; /* Wyśrodkowanie w pionie */
+    justify-content: space-between; /* Równomierne rozmieszczenie elementów */
+    border-radius: 8px;
+}
+
+.user-info b {
+    font-weight: bold; /* Pogrubienie tekstu wewnątrz znacznika <b> */
+    margin-right: 30px;
+    margin-left: 10px;
+}
+
+.button-logout {
+    margin-right: 20px; /* Odsunięcie w prawo */
+    background-color: #af4c4c; /* Kolor tła przycisku */
+    color: white; /* Kolor tekstu przycisku */
+    border: none; /* Brak obramowania */
+    padding: 15px 30px; /* Wewnętrzny odstęp */
+    border-radius: 8px; /* Zaokrąglenie rogów */
+    text-decoration: none; /* Brak podkreślenia tekstu */
+    margin-left: 10px;
+}

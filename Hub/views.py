@@ -3,6 +3,7 @@ from django.views import View
 from .forms import FilamentForm, PrinterForm, PartsForm, AddProjectForm, RegisterForm
 from .models import Filament, Printer, Parts, Project, PrintingQue
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 
 class IndexView(View):
 
@@ -14,7 +15,7 @@ class RegisterView(View):
 
     def get(self, request):
         form = RegisterForm()
-        return render(request, 'login.html', {'form':form})
+        return render(request, 'register.html', {'form':form})
 
     def post(self, request):
         form = RegisterForm(request.POST)
@@ -22,8 +23,32 @@ class RegisterView(View):
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password1'])
             user.save()
-            return redirect('index')
-        return render(request, 'login.html',{'form':form})
+            return redirect('login')
+        return render(request, 'register.html', {'form':form})
+
+class LoginView(View):
+    def get(self, request):
+        return render(request, 'base.html', {'page': 'login'})
+
+    def post(self, request):
+        login_value = request.POST['login']
+        password = request.POST['password']
+
+        user = authenticate(request, username=login_value, password=password)
+
+        if user is not None:
+            # Użytkownik poprawnie uwierzytelniony, możesz zalogować
+            login(request, user)
+            return redirect('printer_list')
+        else:
+            error_message = "Niepoprawny login lub hasło"
+
+        return render(request, 'base.html', {'page': 'login', 'error_message': error_message})
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return redirect('login')
 
 
 class PrinterList(View):

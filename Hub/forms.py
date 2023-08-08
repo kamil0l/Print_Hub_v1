@@ -35,10 +35,10 @@ class PrinterForm(forms.ModelForm):
 
 class PartsForm(forms.ModelForm):
     printers = forms.ModelMultipleChoiceField(
-        queryset=Printer.objects.all(),  # Pobierz dostępne drukarki
-        widget=forms.CheckboxSelectMultiple,  # Użyj checkboxów
+        queryset=Printer.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
         label="Przypisz do drukarki",
-        required=False  # Nie wymagaj wyboru
+        required=False
     )
 
     class Meta:

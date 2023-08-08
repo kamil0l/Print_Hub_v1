@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moja Strona</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+
+<div class="wrapper">
+
+<div class="navbar">
+    <img src="{% static 'images/logo.png' %}" alt="3d print hub" width="70px" class="img-logo">
+    <form class="login-form">
+        <label for="login">Login:</label>
+        <input type="text" id="login" name="login" placeholder="Twój login">
+        <label for="password">Hasło:</label>
+        <input type="password" id="password" name="password" placeholder="Twoje hasło">
+        <button type="submit">Zaloguj</button>
+        <a href="{% url 'register' %}" class="button-register">Zarejestruj</a>
+    </form>
+</div>
+
+    <div class="content">
+
+            <div class="right-container-b">
+                <h1>Utwórz użytkownika</h1>
+                    <form method="post">
+                    {% csrf_token %}
+                    <table>
+
+                        <tbody>
+
+                        {% for field in form %}
+                        <tr>
+                            <td>{{ field.label_tag }}</td>
+                            <td>{{ field }}</td>
+                        </tr>
+                        {% endfor %}
+                        <tr><td colspan="3">{% for error in form.non_field_errors %}{{ error }}{% endfor %}</td></tr>
+                        </tbody>
+                    </table>
+                    <input type="submit" class="submit-addFilament-button">
+                    </form>
+
+            </div>
+
+    </div>
+
+
+    <footer class="bottom-bar">
+        <img src="../static/images/logo.png" alt="3d print hub" width="70px">
+    </footer>
+</div>
+</body>
+</html>

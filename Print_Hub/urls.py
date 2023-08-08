@@ -8,7 +8,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.IndexView.as_view(), name= 'index'),
+    path('', views.LoginView.as_view(), name= 'login'),
     path('printer/', views.PrinterList.as_view(), name= 'printer_list'),
     path('addPrinter/', views.AddPrinter.as_view(), name= 'add_printer'),
     path('project/', views.ProjectListView.as_view(), name= 'project'),
@@ -29,6 +29,8 @@ urlpatterns = [
     path('move_down/<int:item_id>/', views.MoveProjectDownView.as_view(), name='move_down'),
     path('delete_project/<int:project_id>/', views.DeleteProjectView.as_view(), name='delete_project'),
     path('register/', views.RegisterView.as_view(), name='register'),
+    path('login/', views.LoginView.as_view(), name='login'),
+    path('logout/', views.LogoutView.as_view(), name='logout'),
 
 ]
 
