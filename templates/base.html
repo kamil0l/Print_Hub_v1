@@ -15,7 +15,10 @@
 
 <div class="navbar">
     <img src="{% static 'images/logo.png' %}" alt="3d print hub" width="70px" class="img-logo">
-        {% if page == 'login' %}
+    {% if user.is_authenticated %}
+        <p class="user-info">Jesteś zalogowany jako: <b>{{ user.first_name }} {{ user.last_name }}</b>Login:<b>{{ user.username }}</b></p>
+        <a href="{% url 'logout' %}" class="button-logout">Wyloguj</a>
+    {% else %}
         <form class="login-form" method="post" action="{% url 'login' %}">
             {% csrf_token %}
             <label for="login">Login:</label>
@@ -24,10 +27,8 @@
             <input type="password" id="password" name="password" placeholder="Twoje hasło">
             <button type="submit">Zaloguj</button>
             <a href="{% url 'register' %}" class="button-register">Zarejestruj</a>
-            <a href="{% url 'logout' %}" class="button-logout">Wyloguj</a>
         </form>
     {% endif %}
-
 </div>
 
 <div>
