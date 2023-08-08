@@ -1,13 +1,29 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from django.urls import reverse
-from .forms import FilamentForm, PrinterForm, PartsForm, AddProjectForm
+from .forms import FilamentForm, PrinterForm, PartsForm, AddProjectForm, RegisterForm
 from .models import Filament, Printer, Parts, Project, PrintingQue
+from django.contrib.auth.models import User
 
 class IndexView(View):
 
     def get(self, request):
         return render(request, 'base.html')
+
+
+class RegisterView(View):
+
+    def get(self, request):
+        form = RegisterForm()
+        return render(request, 'login.html', {'form':form})
+
+    def post(self, request):
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password1'])
+            user.save()
+            return redirect('index')
+        return render(request, 'login.html',{'form':form})
 
 
 class PrinterList(View):

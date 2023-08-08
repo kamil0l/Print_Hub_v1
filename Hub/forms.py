@@ -1,6 +1,27 @@
 # w pliku forms.py
 from django import forms
 from .models import Filament, Printer, Parts, Project
+from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
+
+class RegisterForm(forms.ModelForm):
+    password1 = forms.CharField(widget=forms.PasswordInput, label='Hasło')
+    password2 = forms.CharField(widget=forms.PasswordInput, label='Powtórz hasło')
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'username']
+        labels = {
+                'first_name': 'Imię',
+                'last_name': 'Nazwisko',
+                'username': 'Login',
+                  }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        if cleaned_data.get('password1') != cleaned_data.get('password2'):
+            raise ValidationError('hasła nie są takie same')
+        return cleaned_data
 
 class FilamentForm(forms.ModelForm):
     class Meta:

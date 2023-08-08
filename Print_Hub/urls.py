@@ -28,6 +28,7 @@ urlpatterns = [
     path('move_up/<int:item_id>/', views.MoveProjectUpView.as_view(), name='move_up'),
     path('move_down/<int:item_id>/', views.MoveProjectDownView.as_view(), name='move_down'),
     path('delete_project/<int:project_id>/', views.DeleteProjectView.as_view(), name='delete_project'),
+    path('register/', views.RegisterView.as_view(), name='register'),
 
 ]
 
