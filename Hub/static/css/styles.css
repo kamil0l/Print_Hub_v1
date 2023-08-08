@@ -97,8 +97,13 @@ button{
     background-color: #45a049;
 }
 
-.register-button {
+.button-register {
     margin-left: 10px;
+    background-color: #333333;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 8px;
+
 }
 
 .navbar a {
