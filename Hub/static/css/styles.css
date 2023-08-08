@@ -360,28 +360,28 @@ a{
 }
 
 .user-info {
-    background-color: #333; /* Kolor tła */
-    color: white; /* Kolor tekstu */
-    padding: 15px 100px; /* Wewnętrzny odstęp */
-    display: flex; /* Ustawienie elementów w linii */
-    align-items: center; /* Wyśrodkowanie w pionie */
-    justify-content: space-between; /* Równomierne rozmieszczenie elementów */
+    background-color: #333;
+    color: white;
+    padding: 15px 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     border-radius: 8px;
 }
 
 .user-info b {
-    font-weight: bold; /* Pogrubienie tekstu wewnątrz znacznika <b> */
+    font-weight: bold;
     margin-right: 30px;
     margin-left: 10px;
 }
 
 .button-logout {
-    margin-right: 20px; /* Odsunięcie w prawo */
-    background-color: #af4c4c; /* Kolor tła przycisku */
-    color: white; /* Kolor tekstu przycisku */
-    border: none; /* Brak obramowania */
-    padding: 15px 30px; /* Wewnętrzny odstęp */
-    border-radius: 8px; /* Zaokrąglenie rogów */
-    text-decoration: none; /* Brak podkreślenia tekstu */
+    margin-right: 20px;
+    background-color: #af4c4c;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    text-decoration: none;
     margin-left: 10px;
 }

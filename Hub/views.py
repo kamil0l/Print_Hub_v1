@@ -3,7 +3,9 @@ from django.views import View
 from .forms import FilamentForm, PrinterForm, PartsForm, AddProjectForm, RegisterForm
 from .models import Filament, Printer, Parts, Project, PrintingQue
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, get_user_model
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 class IndexView(View):
 
@@ -99,16 +101,26 @@ class EditPrinter(View):
 
 
 class ProjectListView(View):
+
     def get(self, request):
         projects = Project.objects.all()
         return render(request, 'project_list.html', {'projects': projects})
 
     def post(self, request):
+        print("Próba dodania projektu do kolejki")
         project_id = request.POST.get('project_id')
-        project = Project.objects.get(id=project_id)
-        order = PrintingQue.objects.count() + 1
-        printing_que = PrintingQue(project=project, order=order)
-        printing_que.save()
+        print("ID projektu:", project_id)
+
+        try:
+            project = Project.objects.get(id=project_id)
+            order = PrintingQue.objects.count() + 1
+            printing_que = PrintingQue(project=project, order=order, user=request.user)
+            printing_que.save()
+            print("Projekt dodany do kolejki")
+            print(request.user)
+        except Project.DoesNotExist:
+            print("Projekt o podanym ID nie istnieje")
+
         return redirect('project')
 
 
@@ -200,8 +212,10 @@ class EditFilament(View):
 
 
 class PrintingView(View):
+    @method_decorator(login_required)  # Użyj dekoratora do wymagania zalogowania
     def get(self, request):
-        printing_list = PrintingQue.objects.all()
+        user = request.user  # Pobierz aktualnie zalogowanego użytkownika
+        printing_list = PrintingQue.objects.filter(user=user)
         return render(request, 'printing_list.html', {'printing_list': printing_list})
 
 

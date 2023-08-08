@@ -1,4 +1,7 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+from .constants import USER_TYPE_CHOICES
 
 
 
@@ -32,6 +35,7 @@ class Project(models.Model):
     filament_needed = models.IntegerField(default=0)
     print_time = models.IntegerField(default=0)
     image = models.ImageField(upload_to='project_images/', null=True, blank=True)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, default=None)
 
     def __str__(self):
         return self.name
@@ -48,10 +52,13 @@ class Parts(models.Model):
 class PrintingQue(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     order = models.IntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.project.name
+
     class Meta:
         ordering = ["order"]
 
-
+class UserProfile(models.Model):
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True, blank=True, default=None)
