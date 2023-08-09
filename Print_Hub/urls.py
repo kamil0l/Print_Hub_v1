@@ -13,7 +13,6 @@ urlpatterns = [
     path('addPrinter/', views.AddPrinter.as_view(), name= 'add_printer'),
     path('project/', views.ProjectListView.as_view(), name= 'project'),
     path('addProject/', views.AddProject.as_view(), name= 'add_project'),
-    path('delete-project/<int:project_id>/', views.DeleteProject.as_view(), name='delete_project'),
     path('filament/', views.FilamentList.as_view(), name= 'filament'),
     path('addFilament/', views.AddFilament.as_view(), name= 'add_filament'),
     path('parts/', views.PartsList.as_view(), name='parts'),
@@ -27,10 +26,12 @@ urlpatterns = [
     path('printing/', views.PrintingView.as_view(), name= 'printing_list'),
     path('move_up/<int:item_id>/', views.MoveProjectUpView.as_view(), name='move_up'),
     path('move_down/<int:item_id>/', views.MoveProjectDownView.as_view(), name='move_down'),
-    path('delete_project/<int:project_id>/', views.DeleteProjectView.as_view(), name='delete_project'),
+    path('delete_project/<int:project_id>/', views.DeleteProject.as_view(), name='delete_project'),
     path('register/', views.RegisterView.as_view(), name='register'),
     path('login/', views.LoginView.as_view(), name='login'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
+    path('remove_from_queue/<int:project_id>/', views.RemoveFromPrintingQueueView.as_view(), name='remove_from_queue'),
+
 
 ]
 

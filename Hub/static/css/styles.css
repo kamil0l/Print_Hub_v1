@@ -385,3 +385,11 @@ a{
     text-decoration: none;
     margin-left: 10px;
 }
+
+.login-required-text {
+    background-color: #af4c4c;
+    border-radius: 8px;
+    padding: 8px;
+    width: 100px;
+    text-align: center;
+}

@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class IndexView(View):
 
@@ -106,6 +108,7 @@ class ProjectListView(View):
         projects = Project.objects.all()
         return render(request, 'project_list.html', {'projects': projects})
 
+
     def post(self, request):
         print("Próba dodania projektu do kolejki")
         project_id = request.POST.get('project_id')
@@ -125,24 +128,41 @@ class ProjectListView(View):
 
 
 
-class AddProject(View):
+class AddProject(LoginRequiredMixin, View):
+
     def get(self, request):
         form = AddProjectForm()
         filaments = Filament.objects.all()
         return render(request, 'add_project.html', {'form': form, 'filaments': filaments})
 
+
     def post(self, request):
         form = AddProjectForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            new_project = form.save(commit=False)
+            new_project.user = request.user  # Przypisanie zalogowanego użytkownika
+            new_project.save()
             return redirect('project')
         return render(request, 'add_project.html', {'form': form})
 
+    def dispatch(self, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            messages.warning(self.request, "Dodawanie projektów dostępne tylko dla zalogowanych użytkowników.")
+            return redirect('login')
+        return super().dispatch(*args, **kwargs)
+
+
 class DeleteProject(View):
+    def get(self, request, project_id):
+        project = get_object_or_404(Project, id=project_id)
+        project.delete()
+        return redirect('login')
+
     def post(self, request, project_id):
         project = get_object_or_404(Project, id=project_id)
         project.delete()
-        return redirect('project')
+        return redirect('login')
+
 
 class FilamentList(View):
 
@@ -212,11 +232,17 @@ class EditFilament(View):
 
 
 class PrintingView(View):
-    @method_decorator(login_required)  # Użyj dekoratora do wymagania zalogowania
+    @method_decorator(login_required)
     def get(self, request):
-        user = request.user  # Pobierz aktualnie zalogowanego użytkownika
+        user = request.user
         printing_list = PrintingQue.objects.filter(user=user)
         return render(request, 'printing_list.html', {'printing_list': printing_list})
+
+    def dispatch(self, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            messages.warning(self.request, "Kolejka Wydruków dostępna jest tylko dla zalogowanych użytkowników.")
+            return redirect('login')
+        return super().dispatch(*args, **kwargs)
 
 
 class MoveProjectUpView(View):
@@ -259,11 +285,14 @@ class MoveProjectDownView(View):
         return redirect('printing_list')
 
 
-class DeleteProjectView(View):
+class RemoveFromPrintingQueueView(View):
     def post(self, request, project_id):
-        printing_que_items = PrintingQue.objects.filter(project__id=project_id)
+        project = get_object_or_404(Project, id=project_id)
+        try:
+            printing_que = PrintingQue.objects.get(project=project, user=request.user)
+            printing_que.delete()
+            print("Projekt usunięty z kolejki wydruków")
+        except PrintingQue.DoesNotExist:
+            print("Projekt nie istnieje w kolejce wydruków")
 
-        for printing_que_item in printing_que_items:
-            printing_que_item.delete()
-
-        return redirect('printing_list')
+        return redirect('project')

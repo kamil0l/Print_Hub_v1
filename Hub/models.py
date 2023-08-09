@@ -50,7 +50,7 @@ class Parts(models.Model):
 
 
 class PrintingQue(models.Model):
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, null=True)
     order = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 

@@ -37,6 +37,7 @@
     {% endif %}
 </div>
 
+
 <div class="content">
 
     <div class="center-container">
@@ -70,16 +71,20 @@
                             <p>Czas wydruku: <b>{{ project.print_time }}</b> minut</p>
                         </td>
                         <td>
-                            <form method="post" action="{% url 'delete_project' project.id %}">
-                                {% csrf_token %}
-                                <button type="submit" class="delete-button">Usuń</button>
-                            </form>
-                            <br>
-                            <form method="post" action="">
-                                {% csrf_token %}
-                                <input type="hidden" name="project_id" value="{{ project.id }}">
-                                <button type="submit" class="button-details">Dodaj do kolejki</button>
-                            </form>
+                            {% if user.is_authenticated %}
+                                <form method="post" action="{% url 'remove_from_queue' project.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="delete-button">Usuń</button>
+                                </form>
+                                <br>
+                                <form method="post" action="">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="project_id" value="{{ project.id }}">
+                                    <button type="submit" class="button-details">Dodaj do kolejki</button>
+                                </form>
+                            {% else %}
+                                <p class="login-required-text">Zaloguj się aby edytować</p>
+                            {% endif %}
                         </td>
                     </tr>
                     {% endfor %}
