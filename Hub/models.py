@@ -50,9 +50,10 @@ class Parts(models.Model):
 
 
 class PrintingQue(models.Model):
-    project = models.ForeignKey(Project, on_delete=models.CASCADE, null=True)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
     order = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    is_removed_from_queue = models.BooleanField(default=False)
 
     def __str__(self):
         return self.project.name

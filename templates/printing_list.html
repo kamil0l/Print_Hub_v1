@@ -76,7 +76,7 @@
                                     </div>
 
                                     <div>
-                                        <form method="post" action="{% url 'delete_project' item.project.id %}">
+                                        <form method="post" action="{% url 'remove_from_queue' item.project.id %}">
                                             {% csrf_token %}
                                             <button type="submit">Usuń</button>
                                         </form>

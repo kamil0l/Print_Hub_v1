@@ -156,12 +156,12 @@ class DeleteProject(View):
     def get(self, request, project_id):
         project = get_object_or_404(Project, id=project_id)
         project.delete()
-        return redirect('login')
+        return redirect('project')
 
     def post(self, request, project_id):
         project = get_object_or_404(Project, id=project_id)
         project.delete()
-        return redirect('login')
+        return redirect('project')
 
 
 class FilamentList(View):
@@ -289,10 +289,13 @@ class RemoveFromPrintingQueueView(View):
     def post(self, request, project_id):
         project = get_object_or_404(Project, id=project_id)
         try:
-            printing_que = PrintingQue.objects.get(project=project, user=request.user)
-            printing_que.delete()
-            print("Projekt usunięty z kolejki wydruków")
+            printing_que = PrintingQue.objects.filter(project=project, user=request.user).order_by('order').first()
+            if printing_que:
+                printing_que.delete()
+                print("Projekt usunięty z kolejki wydruków")
+            else:
+                print("Projekt nie istnieje w kolejce wydruków")
         except PrintingQue.DoesNotExist:
             print("Projekt nie istnieje w kolejce wydruków")
 
-        return redirect('project')
+        return redirect('printing_list')
