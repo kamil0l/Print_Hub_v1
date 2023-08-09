@@ -393,3 +393,14 @@ a{
     width: 100px;
     text-align: center;
 }
+
+.search-form {
+    margin-right: 20px;
+    background-color: #af4c4c;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-left: 10px;
+}

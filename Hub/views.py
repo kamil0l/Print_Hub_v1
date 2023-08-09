@@ -165,9 +165,22 @@ class DeleteProject(View):
 
 
 class FilamentList(View):
-
     def get(self, request):
-        filaments = Filament.objects.all()
+        search_name = request.GET.get('search_name', '')
+        search_producer = request.GET.get('search_producer', '')
+        search_material = request.GET.get('search_material', '')
+        search_colour = request.GET.get('search_colour', '')
+        search_weight = request.GET.get('search_weight', '')
+
+
+        filaments = Filament.objects.filter(
+            name__icontains=search_name,
+            producer__icontains=search_producer,
+            material__icontains=search_material,
+            colour__icontains=search_colour,
+            weight__icontains=search_weight
+        )
+
         return render(request, 'filament_list.html', {'filaments': filaments})
 
 class AddFilament(View):

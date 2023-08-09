@@ -50,6 +50,21 @@
         </div>
 
         <div class="right-container">
+            <div class="search-form">
+                <form method="get" action="{% url 'filament' %}">
+                    <input type="text" name="search_name" placeholder="Nazwa filamentu">
+                    <input type="text" name="search_producer" placeholder="Producent">
+                    <input type="text" name="search_material" placeholder="Materiał">
+                    <input type="text" name="search_colour" placeholder="Kolor">
+                    <input type="text" name="search_weight" placeholder="Waga">
+                    <br>
+                    <br>
+                    <button type="submit">Szukaj</button>
+                </form>
+            </div>
+            <div>
+                <br>
+            </div>
             <table class="filament-table">
                 <thead>
                     <tr>
