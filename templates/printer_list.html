@@ -62,7 +62,13 @@
                 <tbody>
                     {% for printer in printers %}
                     <tr>
-                        <td><img src="{{ printer.image.url }}" alt="{{ printer.name }}" width="150" height="150"></td>
+                        <td>
+                            {% if printer.image %}
+                                <img src="{{ printer.image.url }}" alt="{{ printer.name }} Image">
+                            {% else %}
+                                <p>No image available</p>
+                            {% endif %}
+                        </td>
                         <td>
                             <h3>{{ printer.name }}</h3>
                             <p>Liczba głowic: {{ printer.head }}</p>

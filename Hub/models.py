@@ -34,7 +34,7 @@ class Project(models.Model):
     material = models.ForeignKey(Filament, on_delete=models.SET_NULL, null=True)
     filament_needed = models.IntegerField(default=0)
     print_time = models.IntegerField(default=0)
-    image = models.ImageField(upload_to='project_images/', null=True, blank=True)
+    image = models.ImageField(upload_to='project_images/', null=True, blank=True, default='default_image.jpg')
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, default=None)
 
     def __str__(self):

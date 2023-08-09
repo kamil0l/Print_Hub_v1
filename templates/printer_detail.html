@@ -51,7 +51,13 @@
         </div>
 
         <div class="right-container">
-                <img src="{{ printer.image.url }}" alt="{{ printer.name }}" width="300" height="300">
+
+                {% if printer.image %}
+                    <img src="{{ printer.image.url }}" alt="{{ printer.name }} Image">
+                {% else %}
+                    <p>No image available</p>
+                {% endif %}
+
                 <h2>{{ printer.name }}</h2>
                 <p>Liczba głowic: <b>{{ printer.head }}</b></p>
                 <p>Maksymalna temperatura: <b>{{ printer.max_temperature }}</b></p>
