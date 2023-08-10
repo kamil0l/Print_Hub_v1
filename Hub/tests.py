@@ -42,8 +42,7 @@ def test_add_printer_view(client):
 
 
 @pytest.mark.django_db
-def test_delete_printer_view(client):
-    printer = Printer.objects.create(name='Test Printer', head='2', max_temperature='23', max_speed='33')
+def test_delete_printer_view(client, printer):
     response = client.post(reverse('delete_printer', args=[printer.id]))
     assert response.status_code == 302
 
